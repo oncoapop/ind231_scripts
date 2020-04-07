@@ -18,7 +18,7 @@ dir=$HOME"/ind231/"$type"/"$subtype
 echo $dir
 
 cd $dir
-files=`ls *COMPLETE*`
+files=`ls *PATHOGENIC*`
 head=$type"_"$subtype
 
 output=$outdir"/"$outfile"_"$type"_"$subtype".csv"
@@ -28,7 +28,8 @@ for file in $files
 	do
 	no=`cat $file | awk -F"," '{print $12}' | sort -u | wc -l`
 	SA=`echo $file | awk -F"_" '{print $4}' | awk -F"." '{print $1}'`
-	echo $SA","$no >> $output
+	mut=`cat $file  | awk -F","  '{print $12","$21}'`
+	echo $SA","$mut >> $output
 	done
 
 ########################################################################
@@ -42,7 +43,7 @@ dir=$HOME"/ind231/"$type"/"$subtype
 echo $dir
 
 cd $dir
-files=`ls *COMPLETE*`
+files=`ls *PATHOGENIC*`
 head=$type"_"$subtype
 
 output=$outdir"/"$outfile"_"$type"_"$subtype".csv"
@@ -52,7 +53,8 @@ for file in $files
 	do
 	no=`cat $file | awk -F"," '{print $36}' | sort -u | wc -l`
 	SA=`echo $file | awk -F"_" '{print $4}' | awk -F"." '{print $1}'`
-	echo $SA","$no >> $output
+	mut=`cat $file  | awk -F","  '{print $39","$35,$13","$48}'`
+	echo $SA","$mut >> $output
 	done
 
 ########################################################################
@@ -66,6 +68,7 @@ dir=$HOME"/ind231/"$type"/"$subtype
 echo $dir
 
 cd $dir
+#files=`ls *DIAGNOSIS_COMPLETE*`
 files=`ls *DISCOVERY_COMPLETE*`
 head=$type"_"$subtype
 
@@ -76,7 +79,8 @@ for file in $files
 	do
 	no=`cat $file | awk -F"," '{print $26}' | sort -u | wc -l`
 	SA=`echo $file | awk -F"_" '{print $3}' | awk -F"." '{print $1}'`
-	echo $SA","$no >> $output
+	mut=`cat $file | awk -F"," '{print $4":"$5"_"$26}'`
+	echo $SA","$mut >> $output
 	done
 
 ########################################################################
